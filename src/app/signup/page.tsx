@@ -1,8 +1,8 @@
 "use client"
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import axios from "axios"
+import axios, { Axios } from "axios"
 import toast from "react-hot-toast"
 import { Spinner } from '@chakra-ui/react'
 
@@ -10,10 +10,7 @@ import { Spinner } from '@chakra-ui/react'
 
 export default function SignupPage() {
 
-    const router = useRouter()
-
-    const [loading, setLoading] = React.useState(false)
-
+      const router = useRouter();
 
     const [user, setUser] = React.useState({
         email: "",
@@ -21,7 +18,7 @@ export default function SignupPage() {
         username: "",
     })
     const [buttonDisabled, setButtonDisabled] = React.useState(false)
-
+    const [loading, setLoading] = React.useState(false)
     const onSignup = () => {
         try {
             setLoading(true)
@@ -29,8 +26,8 @@ export default function SignupPage() {
             console.log("user added succefully")
            router.push("/login")}
         
-        catch (error: any) {
-            toast.error(error.message)
+        catch (error : any) {
+            toast.error(error)
         }
         finally {
             setLoading(false)

@@ -1,40 +1,37 @@
-import { verify } from 'crypto';
-import mongoose from 'mongoose'
-import { unique } from 'next/dist/build/utils';
-import { type } from 'os';
+import mongoose from "mongoose";
 
 const userSchema = mongoose.Schema({
-    username : {
-        type: String,
-        required: true ['please provide a username'],
-        unique:true
+    username: {
+        type : String,
+        required: true,
+        unique: true
+
     },
-    email : {
+    email:{
         type: String,
-        required: true ['please provide a email'],
-        unique:true
+        required: true,
+        unique: true
     },
     password : {
         type: String,
-        required: true ['please provide a password'],
-        unique:true
+        required: true,
     },
     isVerified:{
-        type:Boolean,
-        default:false
+        type: Boolean,
+        default: false,
+        required: true,
     },
     isAdmin:{
-        type:Boolean,
-        default:false
+        type: Boolean,
+        default: false,
     },
-    forgotPasswordToken:String,
-    forgotPasswordTokenExpiry:Date,
-    verifyToken:String,
-    verifyTokenExpiry:Date,
-
+    forgotPasswordToken: String,
+    forgotPasswordExpiry: Date,
+    verifiedToken: String,
+    verifiedTokenExpiry: Date,
 
 })
+const User = mongoose.models.users || mongoose.model('users', userSchema);
 
-const User  = mongoose.models.users || mongoose.model('User', userSchema);
+export default User;
 
-export default User
